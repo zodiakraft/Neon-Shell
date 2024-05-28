@@ -260,7 +260,7 @@ class Shell(QWidget):
     def paintEvent(self, event, scene = 0):
         if scene == 0:
             p = QPainter(self)
-            print(self.width(), self.height(), self.tab3.width(), self.tab2.width(), self.tab3.width() + self.tab2.width(), self.width())
+            # #print(self.width(), self.height(), self.tab3.width(), self.tab2.width(), self.tab3.width() + self.tab2.width(), self.width())
             self.transform_x = self.tab3.width() - self.tab.width() - 7
             self.transform_y = self.tab1.height() - 20
             self.spacer = QSpacerItem(2, 1, QSizePolicy.Minimum, QSizePolicy.Expanding)

@@ -10,22 +10,21 @@ import time
 def input_wait(prompt='', timeout=1000, *, _delay=0.02):
     inpute_line = str()
     start = time.time()
-    
+
     while time.time() - start < timeout:
         prompt_t = '\r{:.1f}| {}{}'.format(timeout - time.time() + start,
                                            prompt, inpute_line)
         print(prompt_t, end='')
-        
+
         if msvcrt.kbhit():
             char = msvcrt.getwch()
             if char == '\r':
                 msvcrt.putwch('\n')
                 break
-            elif char == '\000' or char == '\xe0':
+            elif char in ['\000', '\xe0']:
                 msvcrt.getwch()
-                pass
             elif ord(char) == 8: # backspace
-                print('\r{}'.format(' ' * len(prompt_t)), end='')
+                print(f"\r{' ' * len(prompt_t)}", end='')
                 inpute_line = inpute_line[:-1]
             else:
                 inpute_line += char
@@ -33,7 +32,7 @@ def input_wait(prompt='', timeout=1000, *, _delay=0.02):
             time.sleep(_delay)
     else:
         inpute_line = None
-    
+
     return inpute_line
     
 
